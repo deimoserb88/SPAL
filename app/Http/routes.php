@@ -15,6 +15,8 @@ Route::get('/{plant?}', 'HomeController@index');
 
 Route::get('encuesta/{plant}/{carr}','EncuestaController@index');
 
+Route::post('encuesta/guardar','EncuestaController@guardar');
+
 Route::auth();
 
 //Route::get('/home', 'HomeController@index');

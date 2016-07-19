@@ -11,7 +11,7 @@
     {{--Estilos--}}
     {!! Html::style('https://fonts.googleapis.com/css?family=Lato:100,300,400,700') !!}<!-- Fonts -->
     {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css') !!}<!-- Iconos -->
-    {!! Html::style('assets/vendor/bootstrap/dist/css/bootstrap.min.css') !!}          
+    {!! Html::style('assets/vendor/bootstrap/dist/css/bootstrap.min.css') !!}
     {!! Html::style('http://www.ucol.mx/cms/headerfooterapp.css') !!}
     {!! Html::style('assets/vendor/bootstrap/dist/css/bootstrap-theme.min.css') !!}
 
@@ -23,14 +23,27 @@
     <style>
         body {
             font-family: 'Lato';
+            position: relative;
         }
+    .affix {
+        top:0;
+        width: 100%;
+        z-index: 9999 !important;
+    }
+    .navbar {
+        margin-bottom: 10px;
+    }
 
+    .affix ~ .container-fluid {
+       position: relative;
+       top: 50px;
+    }
         .fa-btn {
             margin-left: 6px;
         }
     </style>
 </head>
-<body id="app-layout">
+<body id="app-layout"  data-spy="scroll" data-target=".navbar" data-offset="50">
 <div id="estructura">
         <header id="p-header" style="margin-bottom: 0;">
         <div id="p-top">
@@ -44,19 +57,19 @@
                     <form action="http://www.ucol.mx/conocenos/buscar.htm" id="search-form" class="">
                         <div class="input-append pull-right">
                                 <input type="hidden" value="008220538144971964399:mwxy_s7mt4u" name="cx">
-                                <input type="hidden" value="FORID:10" name="cof"> 
-                                <input type="hidden" value="UTF-8" name="ie"> 
+                                <input type="hidden" value="FORID:10" name="cof">
+                                <input type="hidden" value="UTF-8" name="ie">
                                 <input id="q" class="search" name="q" type="text" placeholder="Buscar en ucol..." size="16">
                                 <input name="more" class="botonbuscar" value="" type="submit">
                         </div>
                     </form>
                     <li><a href="http://www.ucol.mx/alumnos/" target="_blank">Alumnos</a></li>
                     <li><a href="http://www.ucol.mx/trabajadores/" target="_blank">Trabajadores</a></li>
-                </ul>   
+                </ul>
             </div><!--encabezdo-->
         </div><!--top-->
     </header>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default"  data-spy="affix" data-offset-top="84">
         <div class="container" style="width: 100%;">
             <div class="navbar-header">
 
@@ -70,14 +83,14 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Satisfacción con el proceso de admisión 
+                    Satisfacción con el proceso de admisión
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Inicio <i class="fa fa-btn fa-home"></i></a></li>                     
+                    <li><a href="{{ url('/') }}">Inicio <i class="fa fa-btn fa-home"></i></a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -85,7 +98,7 @@
                     @yield('menu_items')
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Iniciar sesión<i class="fa fa-btn fa-sign-in"></i></a></li>                    
+                        <li><a href="{{ url('/login') }}">Iniciar sesión<i class="fa fa-btn fa-sign-in"></i></a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -133,8 +146,8 @@
                                 <a href="http://www.cumex.org.mx/" target="_blank"><img src="http://www.ucol.mx/cms/img/consorcio.png"></a>
                             </div>
                             <div class="col-md-6 col-xs-6 derecha">
-                                <a href="http://www.federaciondeestudiantescolimenses.com/"target="_blank"><img src="http://www.ucol.mx/cms/img/LogoFEC.png"  width="81px" height="30px" ></a>                  
-                                &nbsp;<a href="#" target="_blank"><img src="http://www.ucol.mx/cms/img/SUTUC.png"></a>  
+                                <a href="http://www.federaciondeestudiantescolimenses.com/"target="_blank"><img src="http://www.ucol.mx/cms/img/LogoFEC.png"  width="81px" height="30px" ></a>
+                                &nbsp;<a href="#" target="_blank"><img src="http://www.ucol.mx/cms/img/SUTUC.png"></a>
                                 &nbsp;<a href="http://portal.ucol.mx/feuc/"  target="_blank"><img src="http://www.ucol.mx/cms/img/LogoFEUC.png"></a>
                                 <!-- &nbsp;<a href="http://www.fundacionucol.org/" target="_blank"><img src="/cms/img/fundacionUcol.png"></a> -->
                             </div>
@@ -142,7 +155,7 @@
                         <div class="col-md-12 derechos">&copy; Derechos Reservados 2013-2016 Universidad de Colima</div>
                     </div>
                 </div>
-            </div>   
+            </div>
         </footer>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-transition.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-alert.js"></script>
@@ -155,10 +168,10 @@
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-button.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-collapse.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-typeahead.js"></script>   
-    <script src="http://www.ucol.mx/cms/js/jquery.mobilemenu.js"></script>  
-    <script src="http://www.ucol.mx/cms/js/jquery.liquidcarousel.js"></script>  
-    <script src="http://www.ucol.mx/cms/js/jquery.slides.js"></script> 
+    <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-typeahead.js"></script>
+    <script src="http://www.ucol.mx/cms/js/jquery.mobilemenu.js"></script>
+    <script src="http://www.ucol.mx/cms/js/jquery.liquidcarousel.js"></script>
+    <script src="http://www.ucol.mx/cms/js/jquery.slides.js"></script>
     <script src="http://www.ucol.mx/cms/js/main.js"></script>
     <script src="http://www.ucol.mx/cms/js/custom.js"></script>
 

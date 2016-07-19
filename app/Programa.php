@@ -17,6 +17,8 @@ class Programa extends Model
     	return $this->hasMany('SPAL\Inscrito','id_programa','id');
     }
 
-
+    public function encuesta(){
+    	return $this->hasMany('SPAL\Encuesta','id_programa','id');
+    }    
 }
 

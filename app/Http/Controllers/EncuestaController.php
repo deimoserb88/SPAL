@@ -12,4 +12,11 @@ class EncuestaController extends Controller
     {
     	return view('encuesta.encuesta')->with('datos',$datos);
     }
+
+    public function guardar(Request $datos){
+
+        
+
+
+    }
 }

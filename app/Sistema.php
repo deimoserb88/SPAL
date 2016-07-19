@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sistema extends Model
 {
-     protected $table = 'sistema';
+    protected $table = 'sistema';
 
-         protected $fillable = [
+    protected $fillable = [
     	'uso',
     	'activo',
     	'feactivo',

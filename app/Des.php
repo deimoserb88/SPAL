@@ -22,4 +22,9 @@ class Des extends Model
      public function programa(){
           return $this->hasMany('SPAL\Programa','plant','plant');
      }
+
+     public function encuesta(){
+          return $this->hasMany('SPAL\Encuesta','plant','plant');
+     }    
+
 }
