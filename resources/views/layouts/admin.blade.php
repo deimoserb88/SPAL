@@ -63,7 +63,6 @@
                                 <input name="more" class="botonbuscar" value="" type="submit">
                         </div>
                     </form>
-                    <li><a href="http://www.ucol.mx/alumnos/" target="_blank">Alumnos</a></li>
                     <li><a href="http://www.ucol.mx/trabajadores/" target="_blank">Trabajadores</a></li>
                 </ul>
             </div><!--encabezdo-->
@@ -90,7 +89,13 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Inicio <i class="fa fa-btn fa-home"></i></a></li>
+                    <li><a href="{{ url('/admin') }}">Inicio <i class="fa fa-btn fa-home"></i></a></li>
+                    <li><a href="{{ url('/avance') }}">Avance</i></a></li>
+                    <li><a href="{{ url('/resultados/detallados') }}">Resultados detallados</a></li>
+                    <li><a href="{{ url('/resultados/generales') }}">Resultados generales</a></li>
+                    <li><a href="{{ url('/resultados/deleg') }}">Resultados delegación</a></li>
+                    <li><a href="{{ url('/comparativo/anual') }}">Comparativo anual </a></li>
+                    <li><a href="{{ url('/inscritos/captura') }}">Captura inscritos </a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -106,7 +111,6 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}">Cerrar sesión<i class="fa fa-btn fa-sign-out"></i></a></li>
-                                <li><a href="{{ url('/admin') }}">Administrar<i class="fa fa-btn fa-sign-out"></i></a></li>
                             </ul>
                         </li>
                     @endif

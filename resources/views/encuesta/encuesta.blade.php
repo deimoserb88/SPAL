@@ -21,10 +21,9 @@
 			</div>
 
 			<div class="col-md-10 col-md-offset-1">
-			{!! Form::open(array('url'=>'encuesta/guardar','method'=>'post')) !!}
-			{!! Form::token() !!}
+			{!! Form::open(array('url'=>'encuesta/guardar','method'=>'post')) !!}			
 			{!! Form::hidden('plant',$datos->plant) !!}
-			{!! Form::hidden('carr',$datos->carr) !!}
+			{!! Form::hidden('id_programa',$datos->id_programa) !!}
 				<h4>Menciona qué tan satisfecho estás con los siguientes aspectos:</h4>
 				<div class="panel panel-success">
 					<div class="panel-heading">INFORMACIÓN GENERAL</div>

@@ -28,12 +28,7 @@ class HomeController extends Controller
     public function index($plant="")
     {
         $planteles = Des::all()->sortBy('nomplant');
-        
-        if($plant!=""){            
-            $programas = Programa::where('plant',$plant)->get();                      
-            return view('welcome')->with(['planteles'=>$planteles,'plant'=>$plant,'programas'=>$programas]);
-        }else{
-            return view('welcome')->with('planteles',$planteles);
-        }
+        $programas = Programa::all()->sortBy('nomcarr');
+        return view('welcome')->with(['planteles'=>$planteles,'plant'=>$plant,'programas'=>$programas]);
     }
 }

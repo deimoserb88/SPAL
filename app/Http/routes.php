@@ -10,13 +10,33 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::auth();
+
+Route::get('/admin',[
+		'middleware'=>'auth',
+		'uses' => 'AdminController@index'
+]);
+
+Route::get('/avance',[
+		'middleware'=>'auth',
+		'uses' => 'AdminController@avance'
+]);
+
+Route::get('/resultados/detallados/{plant?}/{carr?}',[
+		'middleware'=>'auth',
+		'uses' => 'AdminController@resultados'
+]);
+
+
+
 
 Route::get('/{plant?}', 'HomeController@index');
 
-Route::get('encuesta/{plant}/{carr}','EncuestaController@index');
+// Route::post('encuesta/{plant}/{id_programa}','EncuestaController@index');
+Route::post('encuesta','EncuestaController@index');
 
 Route::post('encuesta/guardar','EncuestaController@guardar');
 
-Route::auth();
+
 
 //Route::get('/home', 'HomeController@index');
