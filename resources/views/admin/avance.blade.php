@@ -20,7 +20,7 @@
     <tbody>
         @foreach($e as $encuesta)
             <?php
-                $ins = array_search($encuesta->id,array_column($i,'id_programa'));
+                $ins = $i[$encuesta->id];               
                 $av = ceil($encuesta->ver * 100 / $ins);
             ?>
             <tr><td class="text-center">D{{ $encuesta->id_deleg }}</td>

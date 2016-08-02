@@ -36,7 +36,11 @@ class AdminController extends Controller
                         ->orderBy('des.id_deleg','asc')
                         ->get();
 
-        $i = Inscrito::select('id_programa','insc')->where('anio','=',$anio)->get()->toArray();
+        $insc = Inscrito::select('id_programa','insc')->where('anio','=',$anio)->get()->toArray();
+        $i = [];
+        foreach ($insc as $v) {
+            $i[$v['id_programa']] = $v['insc']; 
+        }
 
         return view('admin.avance',compact('e','i'));
 
