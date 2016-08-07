@@ -185,6 +185,36 @@ class AdminController extends Controller
 
     }
 
+    public function resultadosgenerales(Request $request){
+        $anio = $request->session()->get('anio', date('Y'));
+        
+        $sal = mysqli_connect('localhost','root','') or die("Imposible conectarse a la base de datos: ".mysqli_error($sal));
+        @mysqli_select_db($sal,'cgd_admision') or die("Imposible seleccionar la base de datos: ".mysqli_error($sal));
+        mysqli_set_charset($sal, "utf8");
+        return view('admin.resultados_generales',compact('anio','sal'));
+    }
 
+    public function resultadosgeneralesdeleg(Request $request){
+        $anio = $request->session()->get('anio', date('Y'));
+        
+        $sal = mysqli_connect('localhost','root','') or die("Imposible conectarse a la base de datos: ".mysqli_error($sal));
+        @mysqli_select_db($sal,'cgd_admision') or die("Imposible seleccionar la base de datos: ".mysqli_error($sal));
+        mysqli_set_charset($sal, "utf8");
+        return view('admin.resultados_generales_deleg',compact('anio','sal'));
+    }
+
+    public function inscritoscaptura(Request $request){
+        $anio = $request->session()->get('anio', date('Y'));
+
+        $p = Des::with('programa')->orderBy('id_deleg')->get();
+
+        $insc = Inscrito::select('id_programa','insc')->where('anio','=',$anio)->get()->toArray();
+        $i = [];
+        foreach ($insc as $v) {
+            $i[$v['id_programa']] = $v['insc']; 
+        }
+
+        return view('admin.inscritos_captura',compact('p','i'));
+    }
 
 }

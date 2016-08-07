@@ -92,9 +92,9 @@
                     <li><a href="{{ url('/admin') }}">Inicio <i class="fa fa-btn fa-home"></i></a></li>
                     <li><a href="{{ url('/avance') }}">Avance</i></a></li>
                     <li><a href="{{ url('/resultados/detallados') }}">Resultados detallados</a></li>
-                    <li><a href="{{ url('/resultados/generales') }}">Resultados generales</a></li>
-                    <li><a href="{{ url('/resultados/deleg') }}">Resultados delegación</a></li>
-                    <li><a href="{{ url('/comparativo/anual') }}">Comparativo anual </a></li>
+                    <li><a href="{{ url('/resultados/generales') }}" target="_blank">Resultados generales</a></li>
+                    <li><a href="{{ url('/resultados/deleg') }}" target="_blank">Resultados delegación</a></li>
+                    {{-- <li><a href="{{ url('/comparativo/anual') }}">Comparativo anual </a></li> --}}
                     <li><a href="{{ url('/inscritos/captura') }}">Captura inscritos </a></li>
                 </ul>
 

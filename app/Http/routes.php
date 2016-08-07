@@ -27,6 +27,22 @@ Route::get('/resultados/detallados/{plant?}/{carr?}',[
 		'uses' => 'AdminController@resultados'
 ]);
 
+Route::get('/resultados/generales',[
+		'middleware'=>'auth',
+		'uses' => 'AdminController@resultadosgenerales'
+]);
+
+Route::get('/resultados/deleg',[
+		'middleware'=>'auth',
+		'uses' => 'AdminController@resultadosgeneralesdeleg'
+]);
+
+Route::get('/inscritos/captura',[
+		'middleware'=>'auth',
+		'uses' => 'AdminController@inscritoscaptura'
+]);
+
+
 
 
 

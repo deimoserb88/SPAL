@@ -41,7 +41,17 @@
         
                 echo '<div style="font-size:16px; font-weight:bold; margin:auto; width:822px; color:#900">'.$fd['delegacion'].' </div><br>';
             
-                           
+                            //variables para resumen por delegacion
+                            $insc_deleg = 0;//inscritos
+                            $ea_deleg = 0;//encuasts aplicadas
+                            $gene1_deleg = 0;//Informacion general
+                            $gene2_deleg = 0;
+                            $gene3_deleg = 0;
+                            $ipa1_deleg = 0;//Inscripcion al proceso de admision
+                            $ipa2_deleg = 0;
+                            $ipa4_deleg = 0;
+                            $en1_deleg = 0;//Examen nacional
+                            $en2_deleg = 0;                           
                 
                             $rf = mysqli_query($sal,"select plant,nomplant from des where id_deleg = '".$fd['id']."' order by nomplant");
                             while($ff = mysqli_fetch_assoc($rf)){
@@ -59,9 +69,11 @@
                                         echo $fpe['nomcarr'];
                                         echo '<table cellpadding="0" cellspacing="0" width="100%" class="t1">';                                    
                                         echo '<tr><td>Inscritos:</td><td style="text-align:right;">'.$fpe['insc'].'</td></tr>';
+                                        $insc_deleg += $fpe['insc'];
                                         $rea = mysqli_query($sal,"select count(*) ea from encuesta where id_programa = '".$fpe['id']."' and plant = '".$ff['plant']."' and year(feap)='".$anio."' and ver = 1") or die(mysqli_error($sal));
                                         $fea = mysqli_fetch_array($rea);
                                         echo '<tr><td>Encuestas:</td><td style="text-align:right;">'.$fea['ea'].'</td></tr><tr><td>%</td><td style="text-align:right;">';
+                                        $ea_deleg += $fea['ea'];
                                         printf("%.0f%%",$fea['ea']*100/$fpe['insc']);
                                         echo '</td></tr></table>';
                                         
@@ -76,7 +88,8 @@
                                         $fgene1_1 = mysqli_fetch_array($rgene1_1);
                                         $fgene1_2 = mysqli_fetch_array($rgene1_2);
                                         $gene1t = $fgene1_1['tgene1_1'] + $fgene1_2['tgene1_2'];
-                                        
+                                        $gene1_deleg += $gene1t;
+
                                         echo '<table ellpadding="0" cellspacing="0" width="100%" class="t1" >';
                                         echo '<tr><th>Tot. Sat.</th><th>Sat.</th><th>Suma</th></tr>';
                                         echo '<tr><td style="text-align:center;">';
@@ -96,7 +109,8 @@
                                         $fgene2_1 = mysqli_fetch_array($rgene2_1);
                                         $fgene2_2 = mysqli_fetch_array($rgene2_2);
                                         $gene2t = $fgene2_1['tgene2_1'] + $fgene2_2['tgene2_2'];
-                                
+                                        $gene2_deleg += $gene2t;
+
                                         echo '<tr><td style="text-align:center;">';
                                             $TS = 0;//$fgene2_1['tgene2_1']*100/$fea['ea'];
                                             printf("%3.0f%%",$TS);
@@ -123,7 +137,8 @@
                                         $fgene3_1 = mysqli_fetch_array($rgene3_1);
                                         $fgene3_2 = mysqli_fetch_array($rgene3_2);
                                         $gene3t = $fgene3_1['tgene3_1'] + $fgene3_2['tgene3_2'];
-                                
+                                        $gene3_deleg += $gene3t;
+
                                         echo '<tr><td style="text-align:center;">';
                                             $TS = 0;//$fgene3_1['tgene3_1']*100/$fea['ea'];
                                             printf("%3.0f%%",$TS);
@@ -162,7 +177,8 @@
                                         $fipa1_1 = mysqli_fetch_array($ripa1_1);
                                         $fipa1_2 = mysqli_fetch_array($ripa1_2);
                                         $ipa1t = $fipa1_1['tipa1_1'] + $fipa1_2['tipa1_2'];
-                                        
+                                        $ipa1_deleg += $ipa1t;
+
                                         echo '<table ellpadding="0" cellspacing="0" width="100%" class="t1" >';
                                         echo '<tr><th>Tot. Sat.</th><th>Sat.</th><th>Suma</th></tr>';
                                         echo '<tr><td style="text-align:center;">';
@@ -182,7 +198,8 @@
                                         $fipa2_1 = mysqli_fetch_array($ripa2_1);
                                         $fipa2_2 = mysqli_fetch_array($ripa2_2);
                                         $ipa2t = $fipa2_1['tipa2_1'] + $fipa2_2['tipa2_2'];
-                                
+                                        $ipa2_deleg += $ipa2t;
+
                                         echo '<tr><td style="text-align:center;">';
                                             $TS = 0;//$fipa2_1['tipa2_1']*100/$fea['ea'];
                                             printf("%3.0f%%",$TS);
@@ -256,7 +273,8 @@
                                         $fen1_1 = mysqli_fetch_array($ren1_1);
                                         $fen1_2 = mysqli_fetch_array($ren1_2);
                                         $en1t = $fen1_1['ten1_1'] + $fen1_2['ten1_2'];
-                                        
+                                        $en1_deleg += $en1t;
+
                                         echo '<table ellpadding="0" cellspacing="0" width="100%" class="t1" >';
                                         echo '<tr><th>Tot. Sat.</th><th>Sat.</th><th>Suma</th></tr>';
                                         echo '<tr><td style="text-align:center;">';
@@ -276,7 +294,8 @@
                                         $fen2_1 = mysqli_fetch_array($ren2_1);
                                         $fen2_2 = mysqli_fetch_array($ren2_2);
                                         $en2t = $fen2_1['ten2_1'] + $fen2_2['ten2_2'];
-                                
+                                        $en2_deleg += $en2t;
+
                                         echo '<tr><td style="text-align:center;">';
                                             $TS = 0;//$fen2_1['ten2_1']*100/$fea['ea'];
                                             printf("%3.0f%%",$TS);
@@ -441,7 +460,123 @@
                                 for($i=0;$i<4-$tpe;$i++) echo '<td>&nbsp</td>';
                                 echo '</tr></table><br>';
                             }
-            
+echo "<div style=\"font-size:13px; font-weight:bold; width:822px;margin: auto;\">RESUMEN ".$fd['delegacion']."</div>\n";
+                                echo '<table cellpadding="0" cellspacing="0" summary="" style="margin: auto; width: 822px; border:1px dotted #999; padding:10px;" >'."\n";
+                                echo "<tr>\n";
+                                    $PROM = 0;
+                                    echo "<td width=\"25%\" style=\"vertical-align: bottom;\">\n"; 
+                                        
+                                        echo "<table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"t1\">";                                    
+                                        echo "<tr><td>Inscritos:</td><td style=\"text-align:right;\">".$insc_deleg."</td></tr>\n";                                        
+                                        echo "<tr><td>Encuestas:</td><td style=\"text-align:right;\">".$ea_deleg."</td></tr>\n<tr><td>%</td><td style=\"text-align:right;\">";                                        
+                                        printf("%.0f%%",$ea_deleg*100/$insc_deleg);                                        
+                                        echo "</td></tr></table>\n";
+                                        
+                                        /*PRIMERA SECCION INFORMACION GENERAL=========================================================*/
+                                        echo "<div style=\"width:100%; background-color: #FF0;\">\n";
+                                        echo "<strong>Informaci&oacute;n General</strong>\n";
+                                        echo "</div>";                                        
+                                    
+
+                                        //$gene1_deleg += $gene1t;
+                                        
+                                        echo "<table ellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"t1\" >";
+                                        echo "<tr><th>Resultados</th>\n";
+                                        
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$gene1_deleg*100/$ea_deleg);
+                                            $PROM += $gene1_deleg*100/$ea_deleg; 
+                                        echo "</td>\n";
+                                        echo "</tr>";
+
+                                        //$gene2_deleg += $gene2t;
+
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$gene2_deleg*100/$ea_deleg);
+                                            $PROM += $gene2_deleg*100/$ea_deleg;
+                                        echo "</td>\n";
+                                        echo "</tr>";
+                                                                            
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$gene3_deleg*100/$ea_deleg);
+                                            $PROM += $gene3_deleg*100/$ea_deleg;
+                                        echo "</td>\n";
+                                        echo "</tr>";
+                                        
+                                        echo "</table>\n";
+                                        /*FIN PRIMERA SECCION INFORMACION GENERAL ========================================================*/
+                                        
+
+                                        /*SEGUNDA SECCION INSCRIPCIONES AL PROCESO DE ADMISION=========================================================*/
+                                        echo "<div style=\"width:100%; background-color: #FF0;\">\n";
+                                        echo "<strong>Inscrip. al Proceso de Admi.</strong>\n";
+                                        echo "</div>";
+                                       
+                                        echo "<table ellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"t1\" >";
+                                        echo "<tr><th>Resultados</th>\n";
+                                        
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$ipa1_deleg*100/$ea_deleg);
+                                            $PROM += $ipa1_deleg*100/$ea_deleg; 
+                                        echo "</td>\n";
+                                        echo "</tr>";
+
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$ipa2_deleg*100/$ea_deleg);
+                                            $PROM += $ipa2_deleg*100/$ea_deleg; 
+                                        echo "</td>\n";
+                                        echo "</tr>";
+                                        
+//                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+//                                            printf("%3.0f%%",$ipa3_deleg*100/$ea_deleg);
+//                                            $PROM += $ipa3_deleg*100/$ea_deleg; 
+//                                        echo "</td>\n";
+//                                        echo "</tr>";
+                                        
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$ipa4_deleg*100/$ea_deleg);
+                                            $PROM += $ipa4_deleg*100/$ea_deleg; 
+                                        echo "</td>\n";
+                                        echo "</tr>";
+                                        
+                                        
+                                        
+                                        echo "</table>\n";
+                                        /*FIN SEGUNDA SECCION INSCRIPCIONES AL PROCESO DE ADMISION ========================================================*/
+                                        
+                                       /*TERCERA SECCION EXAMEN NACIONAL=========================================================*/
+                                        echo "<div style=\"width:100%; background-color: #FF0;\">\n";
+                                        echo "<strong>Examen Nacional</strong>\n";
+                                        echo "</div>";                                        
+                                    
+                                        echo "<table ellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"t1\" >";
+                                        echo "<tr><th>Resultados</th>\n";
+                                        
+                                        echo "<tr><td style=\"text-align:center;\">\n";
+                                            printf("%3.0f%%",$en1_deleg*100/$ea_deleg);
+                                            $PROM += $en1_deleg*100/$ea_deleg; 
+                                        echo "</td>\n";
+                                        echo "</tr>";
+                                        
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$en2_deleg*100/$ea_deleg);
+                                            $PROM += $en2_deleg*100/$ea_deleg; 
+                                        echo "</td>\n";
+                                        echo "</tr>";
+/*
+                                        echo "<tr><td style=\"text-align:center;\">\n";                                            
+                                            printf("%3.0f%%",$en3_deleg*100/$ea_deleg);
+                                            $PROM += $en3_deleg*100/$ea_deleg; 
+                                        echo "</td>\n";
+                                        echo "</tr>";
+*/
+                                        echo "</table>\n";            
+
+                                   echo "</td>\n";
+                            
+                                
+                                for($i=0;$i<3;$i++) echo "<td>&nbsp</td>";
+                                echo "</tr></table>\n<br />";   
                                                                    
                         ?>
 
