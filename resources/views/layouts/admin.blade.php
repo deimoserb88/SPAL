@@ -89,13 +89,26 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/admin') }}">Inicio <i class="fa fa-btn fa-home"></i></a></li>
-                    <li><a href="{{ url('/avance') }}">Avance</i></a></li>
-                    <li><a href="{{ url('/resultados/detallados') }}">Resultados detallados</a></li>
-                    <li><a href="{{ url('/resultados/generales') }}" target="_blank">Resultados generales</a></li>
-                    <li><a href="{{ url('/resultados/deleg') }}" target="_blank">Resultados delegación</a></li>
-                    {{-- <li><a href="{{ url('/comparativo/anual') }}">Comparativo anual </a></li> --}}
-                    <li><a href="{{ url('/inscritos/captura') }}">Captura inscritos </a></li>
+                    <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-home"></i> Inicio</a></li>
+                    <li><a href="{{ url('/avance') }}"><i class="fa fa-btn fa-table"></i> Avance</i></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-btn fa-columns"></i> Reportes<span      class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/resultados/detallados') }}">Detallados</a></li>
+                            <li><a href="{{ url('/resultados/generales') }}" target="_blank">Generales</a></li>
+                            <li><a href="{{ url('/resultados/deleg') }}" target="_blank">Por delegación</a></li>
+                            {{-- <li><a href="{{ url('/comparativo/anual') }}">Comparativo anual </a></li> --}}
+                        </ul>
+                    </li>
+                    <li><a href="{{ url('/inscritos/captura') }}"><i class="fa fa-btn fa-pencil-square-o"></i> Captura inscritos </a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $anio }}<span      class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($anios as $a)
+                                <li><a href="{{ url('/anio/'.$a->anio) }}">{{ $a->anio }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>                    
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -107,7 +120,7 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->nombre }} <span class="caret"></span>
+                                <i class="fa fa-btn fa-user"></i> {{ Auth::user()->nombre }} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}">Cerrar sesión<i class="fa fa-btn fa-sign-out"></i></a></li>

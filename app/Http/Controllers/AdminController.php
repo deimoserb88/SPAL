@@ -21,7 +21,9 @@ class AdminController extends Controller
 
         $i = Inscrito::where('anio',$anio)->sum('insc');
 
-        return view('admin.admin_home',compact('e','i'));
+        $anios = Encuesta::select(DB::raw('distinct year(feap) as anio'))->get();
+
+        return view('admin.admin_home',compact('e','i','anio','anios'));
     }
 
     public function avance(Request $request){
@@ -54,6 +56,8 @@ class AdminController extends Controller
         //total encustas aplicadas
         $tea = Encuesta::where(DB::raw("year('encusta.feap') = ".$anio))
                             ->where('ver','=',1)
+                            ->where('plant','like',$plant)
+                            ->where('id_programa','like',$id_programa)
                             ->count('ver');
         
         if($plant != '%%'){
@@ -203,7 +207,7 @@ class AdminController extends Controller
         return view('admin.resultados_generales_deleg',compact('anio','sal'));
     }
 
-    public function inscritoscaptura(Request $request){
+    public function inscritosCaptura(Request $request){
         $anio = $request->session()->get('anio', date('Y'));
 
         $p = Des::with('programa')->orderBy('id_deleg')->get();
@@ -214,7 +218,27 @@ class AdminController extends Controller
             $i[$v['id_programa']] = $v['insc']; 
         }
 
-        return view('admin.inscritos_captura',compact('p','i'));
+        return view('admin.inscritos_captura',compact('p','i','anio'));
+    }
+
+    public function inscritosGuardar(Request $request){
+        $anio = $request->session()->get('anio', date('Y'));
+
+        $datos = $request->toArray();        
+        
+        foreach($datos as $id_programa=>$inscritos){
+            if($id_programa != '_token'){
+                $ins = Inscrito::firstOrNew(['id_programa'=>$id_programa,'anio'=>$anio]);
+                $ins->id_programa = $id_programa;
+                $ins->insc = $inscritos;
+                $ins->anio = $anio;
+                $ins->save();
+
+            }
+        }
+
+        return redirect()->action('AdminController@inscritosCaptura');
+        
     }
 
 }

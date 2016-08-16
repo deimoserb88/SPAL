@@ -39,8 +39,14 @@ Route::get('/resultados/deleg',[
 
 Route::get('/inscritos/captura',[
 		'middleware'=>'auth',
-		'uses' => 'AdminController@inscritoscaptura'
+		'uses' => 'AdminController@inscritosCaptura'
 ]);
+
+Route::post('/inscritos/guardar',[
+		'middleware'=>'auth',
+		'uses' => 'AdminController@inscritosGuardar'
+]);
+
 
 
 
