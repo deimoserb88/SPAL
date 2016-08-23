@@ -21,7 +21,7 @@
                         <tr>
                             <td>Contestaron</td>
                             <td class="text-center"><h4><span class="label label-primary">{!! $e !!}</span></h4></td>
-                            <td class="text-center">{!! printf("%.1f",$e*100/$i) !!}</td>
+                            <td class="text-center">{!! printf("%.1f",$i>0?$e*100/$i:0) !!}</td>
                         </tr>
                     </tbody>
                 </table>

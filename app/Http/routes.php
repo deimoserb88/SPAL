@@ -49,9 +49,9 @@ Route::get('/inscritos/captura',[
 Route::get('/{plant?}', 'HomeController@index');
 
 // Route::post('encuesta/{plant}/{id_programa}','EncuestaController@index');
-Route::post('encuesta','EncuestaController@index');
+Route::post('/encuesta','EncuestaController@index');
 
-Route::post('encuesta/guardar','EncuestaController@guardar');
+Route::post('/encuesta/guardar','EncuestaController@guardar');
 
 
 
