@@ -29,6 +29,7 @@ class HomeController extends Controller
     {
         $planteles = Des::all()->sortBy('nomplant');
         $programas = Programa::all()->sortBy('nomcarr');
-        return view('welcome')->with(['planteles'=>$planteles,'plant'=>$plant,'programas'=>$programas]);
+        dd(public_path('que pedo'));
+        //return view('welcome')->with(['planteles'=>$planteles,'plant'=>$plant,'programas'=>$programas]);
     }
 }

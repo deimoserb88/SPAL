@@ -44,7 +44,9 @@ class AdminController extends Controller
             $i[$v['id_programa']] = $v['insc']; 
         }
 
-        return view('admin.avance',compact('e','i'));
+        $anios = Encuesta::select(DB::raw('distinct year(feap) as anio'))->get();
+        
+        return view('admin.avance',compact('e','i','anio','anios'));
 
     }
 
