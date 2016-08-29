@@ -47,17 +47,17 @@
                     <tr>
                         <th class="info" colspan="14">Información general</th>
                     </tr>
-                    <tr><td>1</td><td>{{ espal\Encuesta::$items[1] }}</td>
+                    <tr><td>1</td><td>{{ SPAL\Encuesta::$items[1] }}</td>
                     @foreach($gene1 as $g1)
                         <td class="text-center"><b>{{ $g1 }}</b></td><td class="text-center"><small><?php printf("%.1f",$g1 * 100 / $tea); ?></small></td>
                     @endforeach
                     </tr>
-                    <tr><td>2</td><td>{{ espal\Encuesta::$items[2] }}</td>
+                    <tr><td>2</td><td>{{ SPAL\Encuesta::$items[2] }}</td>
                     @foreach($gene2 as $g2)
                         <td class="text-center"><b>{{ $g2 }}</b></td><td class="text-center"><small><?php printf("%.1f",$g2 * 100 / $tea); ?></small></td>
                     @endforeach
                     </tr>
-                    <tr><td>3</td><td>{{ espal\Encuesta::$items[3] }}</td>
+                    <tr><td>3</td><td>{{ SPAL\Encuesta::$items[3] }}</td>
                     @foreach($gene3 as $g3)
                         <td class="text-center"><b>{{ $g3 }}</b></td><td class="text-center"><small><?php printf("%.1f",$g3 * 100 / $tea); ?></small></td>
                     @endforeach
@@ -66,12 +66,12 @@
                     <tr>
                         <th class="info" colspan="14">Inscripciones al proceso de admisión</th>
                     </tr>
-                    <tr><td>4</td><td>{{ espal\Encuesta::$items[4] }}</td>
+                    <tr><td>4</td><td>{{ SPAL\Encuesta::$items[4] }}</td>
                     @foreach($ipa1 as $p1)
                         <td class="text-center"><b>{{ $p1 }}</b></td><td class="text-center"><small><?php printf("%.1f",$p1 * 100 / $tea); ?></small></td>
                     @endforeach
                     </tr>
-                    <tr><td>5</td><td>{{ espal\Encuesta::$items[5] }}</td>
+                    <tr><td>5</td><td>{{ SPAL\Encuesta::$items[5] }}</td>
                     @foreach($ipa2 as $p2)
                         <td class="text-center"><b>{{ $p2 }}</b></td><td class="text-center"><small><?php printf("%.1f",$p2 * 100 / $tea); ?></small></td>
                     @endforeach
@@ -80,12 +80,12 @@
                     <tr>
                         <th class="info" colspan="14">Examen nacional</th>
                     </tr>
-                    <tr><td>6</td><td>{{ espal\Encuesta::$items[6] }}</td>
+                    <tr><td>6</td><td>{{ SPAL\Encuesta::$items[6] }}</td>
                     @foreach($en1 as $e1)
                         <td class="text-center"><b>{{ $e1 }}</b></td><td class="text-center"><small><?php printf("%.1f",$e1 * 100 / $tea); ?></small></td>
                     @endforeach
                     </tr>
-                    <tr><td>7</td><td>{{ espal\Encuesta::$items[7] }}</td>
+                    <tr><td>7</td><td>{{ SPAL\Encuesta::$items[7] }}</td>
                     @foreach($en2 as $e2)
                         <td class="text-center"><b>{{ $e2 }}</b></td><td class="text-center"><small><?php printf("%.1f",$e2 * 100 / $tea); ?></small></td>
                     @endforeach
@@ -99,7 +99,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">                             
                     <h5 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      1. {{ espal\Encuesta::$items[8] }} <span class="caret"></span> 
+                      1. {{ SPAL\Encuesta::$items[8] }} <span class="caret"></span> 
                     </a></h5>                          
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -115,7 +115,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingDos">                             
                     <h5 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDos" aria-expanded="true" aria-controls="collapseDos">
-                      2. {{ espal\Encuesta::$items[9] }} <span class="caret"></span> 
+                      2. {{ SPAL\Encuesta::$items[9] }} <span class="caret"></span> 
                     </a></h5>                          
                 </div>
                 <div id="collapseDos" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDos">
@@ -131,7 +131,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingTres">                             
                     <h5 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTres" aria-expanded="true" aria-controls="collapseTres">
-                      3. {{ espal\Encuesta::$items[10] }} <span class="caret"></span> 
+                      3. {{ SPAL\Encuesta::$items[10] }} <span class="caret"></span> 
                     </a></h5>                          
                 </div>
                 <div id="collapseTres" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTres">
