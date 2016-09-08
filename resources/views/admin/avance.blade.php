@@ -29,7 +29,7 @@
                 <td>{{ $ins }} / {{ $encuesta->ver }}</td>
                 <td class="text-center">
                     <div class="progress">
-                      <div class="progress-bar progress-bar-{{ $av == 100 ? 'success' : 'warning' }}" role="progressbar" aria-valuenow="{{ $av }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $av }}%">
+                      <div class="progress-bar progress-bar-{{ $av >= 100 ? 'success' : ($av < 50 ? 'danger' : 'warning') }}" role="progressbar" aria-valuenow="{{ $av }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $av }}%">
                          {{ $av }}%
                       </div>
                     </div>

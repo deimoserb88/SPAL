@@ -8,26 +8,7 @@
 
 <div class="container">
 
-	<form class="form-horizontal" action="{{ url('inscritos_guardar')}} " method="post">
-	<table class="table table hover">
-		<thead>
-			<tr>
-				<td>Programa</td>
-				<td>Inscritos</td>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach($p as $plant)
-			<tr class="info">
-				<td colspan="2">{{ $plant->nomplant }}</td>
-			</tr>
-				@foreach($plant->programa as $prog)
-				<tr>
-					<td>{{ $prog->nomcarr }}</td>
-					<td>
-						<input class="form-control" name="{{ $prog->id }}" value="{{ count($i)>0?$i[$prog->id]:'' }}" type="number" required="required" size="3" min="0" max="100" />
-					</td>
-				</tr>
+
 	<div class="col-md-10 col-md-offset-1" style="margin-bottom:20px;">
 		<form class="form-horizontal" action="{{ url('inscritos/guardar') }}" method="post">
 			{{ csrf_field() }}

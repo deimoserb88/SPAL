@@ -219,8 +219,9 @@ class AdminController extends Controller
         foreach ($insc as $v) {
             $i[$v['id_programa']] = $v['insc']; 
         }
-
-        return view('admin.inscritos_captura',compact('p','i','anio'));
+        $anios = Encuesta::select(DB::raw('distinct year(feap) as anio'))->get();
+        
+        return view('admin.inscritos_captura',compact('p','i','anio','anios'));
     }
 
     public function inscritosGuardar(Request $request){
