@@ -15,7 +15,7 @@ use DB;
 class AdminController extends Controller
 {
     public function index(Request $request){
-        $anio = $request->session()->get('anio', date('Y'));
+        $anio = $request->session()->get('anio', date('m') < 8 ? date('Y')-1 : date('Y'));
 
         $e = Encuesta::where('feap','like',$anio."%")->count();
 
@@ -27,15 +27,16 @@ class AdminController extends Controller
     }
 
     public function avance(Request $request){
-        $anio = $request->session()->get('anio', date('Y'));
+        $anio = $request->session()->get('anio',  date('m') < 8 ? date('Y')-1 : date('Y'));
 
-        $e = Encuesta::select(DB::raw('des.id_deleg,des.nomplant,programa.nomcarr,programa.id,count(encuesta.ver) as ver'))
+        $e = Encuesta::select(DB::raw('encuesta.id_programa,des.id_deleg,des.nomplant,programa.nomcarr,programa.id,count(encuesta.ver) as ver'))
                         ->join('programa','encuesta.id_programa','=','programa.id')
                         ->join('des','encuesta.plant','=','des.plant')
                         ->where('encuesta.ver','=','1')
                         ->where(DB::raw("year('encusta.feap') = ".$anio))
-                        ->groupBy('programa.nomcarr')
+                        ->groupBy('encuesta.id_programa')
                         ->orderBy('des.id_deleg','asc')
+                        ->orderBy('des.nomplant','asc')
                         ->get();
 
         $insc = Inscrito::select('id_programa','insc')->where('anio','=',$anio)->get()->toArray();
@@ -51,7 +52,8 @@ class AdminController extends Controller
     }
 
     public function resultados(Request $request,$plant = '%%',$id_programa = '%%'){
-        $anio = $request->session()->get('anio', date('Y'));
+        $anio = $request->session()->get('anio',  date('m') < 8 ? date('Y')-1 : date('Y'));
+        $anios = Encuesta::select(DB::raw('distinct year(feap) as anio'))->get();
         $planteles = Des::all()->sortBy('nomplant');
         $programas = Programa::all()->sortBy('nomcarr');
 
@@ -187,30 +189,30 @@ class AdminController extends Controller
                             ->where(DB::raw("year('feap') = ".$anio))
                             ->get();
 
-        return view('admin.resultados',compact('planteles','programas','tea','deleg','plant','id_programa','gene1','gene2','gene3','ipa1','ipa2','en1','en2','pa1','pa2','pa3'));
+        return view('admin.resultados',compact('anio','anios','planteles','programas','tea','deleg','plant','id_programa','gene1','gene2','gene3','ipa1','ipa2','en1','en2','pa1','pa2','pa3'));
 
     }
 
     public function resultadosgenerales(Request $request){
-        $anio = $request->session()->get('anio', date('Y'));
+        $anio = $request->session()->get('anio',  date('m') < 8 ? date('Y')-1 : date('Y'));
         
         $sal = mysqli_connect('localhost','root','') or die("Imposible conectarse a la base de datos: ".mysqli_error($sal));
-        @mysqli_select_db($sal,'cgd_admision') or die("Imposible seleccionar la base de datos: ".mysqli_error($sal));
+        @mysqli_select_db($sal,'dges_espal') or die("Imposible seleccionar la base de datos: ".mysqli_error($sal));
         mysqli_set_charset($sal, "utf8");
         return view('admin.resultados_generales',compact('anio','sal'));
     }
 
     public function resultadosgeneralesdeleg(Request $request){
-        $anio = $request->session()->get('anio', date('Y'));
+        $anio = $request->session()->get('anio',  date('m') < 8 ? date('Y')-1 : date('Y'));
         
         $sal = mysqli_connect('localhost','root','') or die("Imposible conectarse a la base de datos: ".mysqli_error($sal));
-        @mysqli_select_db($sal,'cgd_admision') or die("Imposible seleccionar la base de datos: ".mysqli_error($sal));
+        @mysqli_select_db($sal,'dges_espal') or die("Imposible seleccionar la base de datos: ".mysqli_error($sal));
         mysqli_set_charset($sal, "utf8");
         return view('admin.resultados_generales_deleg',compact('anio','sal'));
     }
 
     public function inscritosCaptura(Request $request){
-        $anio = $request->session()->get('anio', date('Y'));
+        $anio = $request->session()->get('anio',  date('m') < 8 ? date('Y')-1 : date('Y'));
 
         $p = Des::with('programa')->orderBy('id_deleg')->get();
 
@@ -225,7 +227,7 @@ class AdminController extends Controller
     }
 
     public function inscritosGuardar(Request $request){
-        $anio = $request->session()->get('anio', date('Y'));
+        $anio = $request->session()->get('anio',  date('m') < 8 ? date('Y')-1 : date('Y'));
 
         $datos = $request->toArray();        
         
@@ -242,6 +244,11 @@ class AdminController extends Controller
 
         return redirect()->action('AdminController@inscritosCaptura');
         
+    }
+
+    public function anioCambiar(Request $request,$anio){
+        $request->session()->put('anio',$anio);
+        return redirect()->action('AdminController@index');
     }
 
 }

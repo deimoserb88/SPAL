@@ -10,7 +10,7 @@
                 <div class="panel-heading">Encuesta de satisfacción con el proceso de admisión</div>
                 <div class="panel-body">
                     <div class="col-md-10 col-md-offset-1" style="margin-bottom: 10px ; text-align: justify;">
-                        <h3>Estimad@ estudieante de nuevo ingreso, nos interesa conocer tu opinión para evaluar el proceso de admisión y así poder tomar desiciones para mejorarlo.</h3>
+                        <h3>Estimad@ estudiante de nuevo ingreso, nos interesa conocer tu opinión para evaluar el proceso de admisión y así poder tomar decisiones para mejorarlo.</h3>
                     </div>
                     <div class="alert alert-info col-md-10 col-md-offset-1">
                         Para iniciar la encuesta, a continuación selecciona tu plantel y el programa educativo al que ingresaste:

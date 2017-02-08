@@ -9,18 +9,15 @@
 
     <link type="image/x-icon" href="http://www.ucol.mx/cms/img/favicon.ico" rel="icon" />
     {{--Estilos--}}
-    {!! Html::style('https://fonts.googleapis.com/css?family=Lato:100,300,400,700') !!}<!-- Fonts -->
-    {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css') !!}<!-- Iconos -->
-    {!! Html::style('assets/vendor/bootstrap/dist/css/bootstrap.min.css') !!}
-    {!! Html::style('http://www.ucol.mx/cms/headerfooterapp.css') !!}
-    {!! Html::style('assets/vendor/bootstrap/dist/css/bootstrap-theme.min.css') !!}
+    {{ Html::style('https://fonts.googleapis.com/css?family=Lato:100,300,400,700') }}<!-- Fonts -->
+    {{ Html::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css') }}<!-- Iconos -->
+    {{ Html::style('/public/assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}
+    {{ Html::style('http://www.ucol.mx/cms/headerfooterapp.css') }}
+    {{-- {!! Html::style('/public/assets/vendor/bootstrap/dist/css/bootstrap-theme.min.css') !!} --}}
 
-
-    @yield('estilos') <!--Para agregar estilos propios de cada modulo-->
-
-    {{-- JavaScripts --}}
-
-
+    
+    @yield('estilos') {{-- Para agregar estilos propios de cada modulo --}}
+    
     <style>
         body {
             font-family: 'Lato';
@@ -42,6 +39,7 @@
         .fa-btn {
             margin-left: 6px;
         }
+
     </style>
 </head>
 <body id="app-layout"  data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -103,7 +101,7 @@
                     </li>
                     <li><a href="{{ url('/inscritos/captura') }}"><i class="fa fa-btn fa-pencil-square-o"></i> Captura inscritos </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $anio }}<span      class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $anio }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             @foreach($anios as $a)
                                 <li><a href="{{ url('/anio/'.$a->anio) }}">{{ $a->anio }}</a></li>
@@ -176,7 +174,7 @@
                 </div>
             </div>
         </footer>
-    <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-transition.js"></script>
+{{--     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-transition.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-alert.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-modal.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-dropdown.js"></script>
@@ -187,15 +185,15 @@
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-button.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-collapse.js"></script>
     <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-typeahead.js"></script>
+    <script src="http://www.ucol.mx/cms/js/bootstrap/js/bootstrap-typeahead.js"></script> --}}
     <script src="http://www.ucol.mx/cms/js/jquery.mobilemenu.js"></script>
     <script src="http://www.ucol.mx/cms/js/jquery.liquidcarousel.js"></script>
     <script src="http://www.ucol.mx/cms/js/jquery.slides.js"></script>
     <script src="http://www.ucol.mx/cms/js/main.js"></script>
     <script src="http://www.ucol.mx/cms/js/custom.js"></script>
 
-    {!! Html::script('assets/vendor/jquery/dist/jquery.min.js') !!}
-    {!! Html::script('assets/vendor/bootstrap/dist/js/bootstrap.min.js') !!}
+    {{ Html::script('/public/assets/vendor/jquery/dist/jquery.min.js') }}
+    {{ Html::script('/public/assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}
 
     @yield('scripts'){{--Para scripts propios del módulo--}}
 

@@ -29,7 +29,7 @@
 					<tr>
 						<td>{{ $prog->nomcarr }}</td>
 						<td>
-							<input class="form-control" name="{{ $prog->id }}" value="{{ isset($i[$prog->id])?$i[$prog->id]:'' }}" type="number" required="required" size="3" min="0" max="100" />
+							<input class="form-control" name="{{ $prog->id }}" value="{{ isset($i[$prog->id])?$i[$prog->id]:'' }}" type="number" required="required" size="3" min="0" max="150" />
 						</td>
 					</tr>
 					@endforeach

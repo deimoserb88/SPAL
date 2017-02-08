@@ -37,6 +37,7 @@
             </pre>
         </div>
         <div class="panel-body">
+           
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                     <tr>
@@ -67,7 +68,7 @@
                         <th class="info" colspan="14">Inscripciones al proceso de admisión</th>
                     </tr>
                     <tr><td>4</td><td>{{ SPAL\Encuesta::$items[4] }}</td>
-                    @foreach($ipa1 as $p1)
+                    @foreach($ipa1 as $p1)                        
                         <td class="text-center"><b>{{ $p1 }}</b></td><td class="text-center"><small><?php printf("%.1f",$p1 * 100 / $tea); ?></small></td>
                     @endforeach
                     </tr>
@@ -154,8 +155,8 @@
 
 @section('scripts')
 
-{!! Html::script('assets/vendor/datatables/media/js/jquery.dataTables.min.js') !!}
-{!! Html::script('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') !!}
+{{ Html::script('/public/assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}
+{{ Html::script('/public/assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}
 
 <script type="text/javascript">
 
@@ -186,6 +187,7 @@
                 $("#id_programa").children().css('display','inherit');
                 $("#id_programa").children().not("."+$("#plant").val()).css('display','none');
                 $("#id_programa").attr("disabled",false);
+                console.log("que pasa?");
             }
         });
 

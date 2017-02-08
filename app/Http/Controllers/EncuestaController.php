@@ -12,6 +12,7 @@ class EncuestaController extends Controller
 {
     public function index(Request $datos)
     {
+        
         return view('encuesta.encuesta')->with('datos',$datos);
     }
 
