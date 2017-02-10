@@ -41,7 +41,7 @@
                 Concentrado de resultados con descripción de conceptos.                
             </div>
             <div class="panel-footer">
-                <button type="button" class="btn btn-primary" id="detalles">Ver detalle</button>
+                <button type="button" class="btn btn-primary" id="detalle">Ver detalle</button>
             </div>
         </div>
     </div>
