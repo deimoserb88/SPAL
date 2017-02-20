@@ -60,7 +60,7 @@ class AdminController extends Controller
         $programas = Programa::all()->sortBy('nomcarr');
 
         //total encustas aplicadas
-        $tea = Encuesta::where(DB::raw("year('encusta.feap') = ".$anio))
+        $tea = Encuesta::where('feap','>',$anio.'-01-08')                            
                             ->where('ver','=',1)
                             ->where('plant','like',$plant)
                             ->where('id_programa','like',$id_programa)

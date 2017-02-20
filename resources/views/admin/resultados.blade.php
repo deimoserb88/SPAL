@@ -14,7 +14,7 @@
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Plantel</span>
                     <select name="plant" id="plant" class="form-control plant" required="required">
-                        <option value="%%">TODOS</option>
+                        <option value="">TODOS</option>
                         @foreach($planteles as $plantel)
                             <option value="{{ $plantel->plant }}" {{ ($plantel->plant == $plant?'selected=selected':'') }}>{{ $plantel->nomplant }}</option>
                         @endforeach
@@ -23,17 +23,18 @@
                 <div class="input-group" style="margin-top: 10px;">
                     <span class="input-group-addon" id="basic-addon2">Programa</span>
                     <select name="id_programa" id="id_programa" class="form-control" {{ ($plant != '%%' ?'':'disabled="disabled"') }} required="required">
-                        <option value="%%">TODOS</option>
+                        <option value="">TODOS</option>
                             @foreach($programas as $programa)
-                                <option value="{{ $programa->id }}" class="{{ $programa->plant }}" {{ ($programa->id == $id_programa?'selected=selected':'') }}>{{ $programa->nomcarr }}</option>
+                                <option value="{{ $programa->id }}" class="{{ $programa->plant }}" {{ ($programa->id == $id_programa?'selected="selected"':'') }}>{{ $programa->nomcarr }}</option>
                             @endforeach
                     </select>
                 </div>
             </div>            
             <button class="btn btn-primary enviar" style="margin-top: 10px;">Ver Resultados</button>
             <pre style="margin-top: 10px;">
-            <b>{{ $deleg[0]['delegacion'] }}
-            Total de encuestas aplicadas: {{ $tea }}</b>
+                <b>{{ $deleg[0]['delegacion'] }}
+                Total de encuestas aplicadas: {{ $tea }}
+                Año: {{ $anio }}</b>
             </pre>
         </div>
         <div class="panel-body">
@@ -202,7 +203,9 @@
         });
 
         $(".enviar").click(function(){
-            window.location.href='{{ url('/resultados/detallados') }}/'+$("#plant").val()+'/'+$("#id_programa").val();
+            var plant = $("#plant").val() != null ? '/'+$("#plant").val() : '';
+            var carr  = $("#id_programa").val() != null ? '/'+$("#id_programa").val() : '';
+            window.location.href='{{ url('/resultados/detallados') }}'+plant+carr;//$("#plant").val()+'/'+$("#id_programa").val();
         });
 
         $("#id_programa").children().css('display','inherit');

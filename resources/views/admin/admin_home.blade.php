@@ -16,13 +16,17 @@
                     <tbody>
                         <tr>
                             <td>Inscritos</td>
-                            <td class="text-center"><h4><span class="label label-primary">{{ $i }}</span></h4></td>
-                            <td class="text-center">100%</td>
+                            @if($i > 0)
+                                <td class="text-center"><h4><span class="label label-primary">{{ $i }}</span></h4></td>
+                                <td class="text-center">100%</td>
+                            @else
+                                <td class="text-center" colspan="2"><h4><span class="label label-warning">Sin inscritos</span></h4></td>                                
+                            @endif
                         </tr>
                         <tr>
                             <td>Contestaron</td>
                             <td class="text-center"><h4><span class="label label-primary">{{ $e }}</span></h4></td>
-                            <td class="text-center">{{ printf("%.1f",$i>0?$e*100/$i:0) }}</td>
+                            <td class="text-center">{{ number_format(($i>0?$e*100/$i:$i),1) }}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -106,6 +106,9 @@
                             @foreach($anios as $a)
                                 <li><a href="{{ url('/anio/'.$a->anio) }}">{{ $a->anio }}</a></li>
                             @endforeach
+                            @if( date('m') >= 2)
+                                <li><a href="{{ url('/anio/'.date('Y')) }}">{{ date('Y') }}</a></li>
+                            @endif
                         </ul>
                     </li>                    
                 </ul>

@@ -18,24 +18,30 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($e as $encuesta)
-            <?php
-                $ins = $i[$encuesta->id];               
-                $av = ceil($encuesta->ver * 100 / $ins);
-            ?>
-            <tr><td class="text-center">D{{ $encuesta->id_deleg }}</td>
-                <td>{{ $encuesta->nomplant }}</td>
-                <td>{{ $encuesta->nomcarr }}</td>
-                <td>{{ $ins }} / {{ $encuesta->ver }}</td>
-                <td class="text-center">
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-{{ $av >= 100 ? 'success' : ($av < 50 ? 'danger' : 'warning') }}" role="progressbar" aria-valuenow="{{ $av }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $av }}%">
-                         {{ $av }}%
-                      </div>
-                    </div>
-                </td>
+        @if(count($i) > 0)
+            @foreach($e as $encuesta)
+                <?php
+                    $ins = $i[$encuesta->id];               
+                    $av = ceil($encuesta->ver * 100 / $ins);
+                ?>
+                <tr><td class="text-center">D{{ $encuesta->id_deleg }}</td>
+                    <td>{{ $encuesta->nomplant }}</td>
+                    <td>{{ $encuesta->nomcarr }}</td>
+                    <td>{{ $ins }} / {{ $encuesta->ver }}</td>
+                    <td class="text-center">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-{{ $av >= 100 ? 'success' : ($av < 50 ? 'danger' : 'warning') }}" role="progressbar" aria-valuenow="{{ $av }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $av }}%">
+                             {{ $av }}%
+                          </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="5"><p class="alert alert-warning">No hay encuestas para el periodo <b>{{ $anio }}</b></p></td>
             </tr>
-        @endforeach
+        @endif
     </tbody>
 </table>
 
